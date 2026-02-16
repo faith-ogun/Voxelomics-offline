@@ -41,6 +41,8 @@ backend/**/__pycache__/
 backend/**/.pytest_cache/
 backend/**/.mypy_cache/
 
+kaggle/
+
 # -----------------------------
 # Local runtime state (do not commit)
 # -----------------------------
