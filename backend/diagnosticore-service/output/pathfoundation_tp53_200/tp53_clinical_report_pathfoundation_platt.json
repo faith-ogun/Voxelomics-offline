@@ -1,0 +1,261 @@
+{
+  "artifact_type": "tp53_locked_threshold_report_v1",
+  "created_at_utc": "2026-02-16T18:30:38.534727+00:00",
+  "config": {
+    "predictions_csv": "/Users/faith/Desktop/Voxelomics-offline/backend/diagnosticore-service/output/pathfoundation_tp53_200/case_predictions_calibrated_platt.csv",
+    "threshold_source": "threshold_json",
+    "threshold_objective": "max_f1",
+    "bootstrap_iters": 2000,
+    "seed": 42,
+    "subgroup_columns": [],
+    "min_subgroup_size": 8
+  },
+  "locked_threshold": {
+    "value": 0.338,
+    "source": "threshold_json",
+    "objective": "max_f1"
+  },
+  "overall_metrics": {
+    "val": {
+      "threshold_metrics": {
+        "n": 50.0,
+        "positive_rate": 0.36,
+        "accuracy": 0.82,
+        "precision": 0.68,
+        "recall": 0.9444444444444444,
+        "specificity": 0.75,
+        "f1": 0.7906976744186047,
+        "balanced_accuracy": 0.8472222222222222
+      },
+      "rank_metrics": {
+        "roc_auc": 0.8836805555555556,
+        "average_precision": 0.8032331072875449
+      },
+      "calibration": {
+        "brier_score": 0.18652675945328004,
+        "ece_10": 0.14931776
+      }
+    },
+    "test": {
+      "threshold_metrics": {
+        "n": 50.0,
+        "positive_rate": 0.4,
+        "accuracy": 0.7,
+        "precision": 0.5862068965517241,
+        "recall": 0.85,
+        "specificity": 0.6,
+        "f1": 0.6938775510204082,
+        "balanced_accuracy": 0.725
+      },
+      "rank_metrics": {
+        "roc_auc": 0.77,
+        "average_precision": 0.7083413072873412
+      },
+      "calibration": {
+        "brier_score": 0.20820516360342,
+        "ece_10": 0.13791082
+      }
+    }
+  },
+  "test_bootstrap_ci_95": {
+    "accuracy": {
+      "low": 0.58,
+      "median": 0.7,
+      "high": 0.82,
+      "n_boot_valid": 2000.0
+    },
+    "precision": {
+      "low": 0.40625,
+      "median": 0.5925925925925926,
+      "high": 0.7666666666666667,
+      "n_boot_valid": 2000.0
+    },
+    "recall": {
+      "low": 0.6666666666666666,
+      "median": 0.8571428571428571,
+      "high": 1.0,
+      "n_boot_valid": 2000.0
+    },
+    "specificity": {
+      "low": 0.4230769230769231,
+      "median": 0.6,
+      "high": 0.7812839673913041,
+      "n_boot_valid": 2000.0
+    },
+    "f1": {
+      "low": 0.5238095238095238,
+      "median": 0.6938775510204083,
+      "high": 0.8275862068965517,
+      "n_boot_valid": 2000.0
+    },
+    "balanced_accuracy": {
+      "low": 0.6022399475524476,
+      "median": 0.7256944444444444,
+      "high": 0.8461538461538461,
+      "n_boot_valid": 2000.0
+    },
+    "roc_auc": {
+      "low": 0.6217830882352942,
+      "median": 0.7727272727272727,
+      "high": 0.8961038961038961,
+      "n_boot_valid": 2000.0
+    },
+    "average_precision": {
+      "low": 0.4901425018020803,
+      "median": 0.7269477209578791,
+      "high": 0.8890312652768458,
+      "n_boot_valid": 2000.0
+    },
+    "brier_score": {
+      "low": 0.17245735017684147,
+      "median": 0.20906492733554,
+      "high": 0.24647625554518948,
+      "n_boot_valid": 2000.0
+    },
+    "ece_10": {
+      "low": 0.07738553149999998,
+      "median": 0.16508797,
+      "high": 0.26492573599999997,
+      "n_boot_valid": 2000.0
+    }
+  },
+  "subgroup_metrics_test": {
+    "true_label_name": [
+      {
+        "group": "tp53_mutated",
+        "n": 20.0,
+        "threshold_metrics": {
+          "n": 20.0,
+          "positive_rate": 1.0,
+          "accuracy": 0.85,
+          "precision": 1.0,
+          "recall": 0.85,
+          "specificity": 0.0,
+          "f1": 0.9189189189189189,
+          "balanced_accuracy": 0.425
+        },
+        "rank_metrics": {
+          "roc_auc": null,
+          "average_precision": null
+        },
+        "calibration": {
+          "brier_score": 0.3382333524976999,
+          "ece_10": 0.5748137999999999
+        }
+      },
+      {
+        "group": "tp53_wildtype",
+        "n": 30.0,
+        "threshold_metrics": {
+          "n": 30.0,
+          "positive_rate": 0.0,
+          "accuracy": 0.6,
+          "precision": 0.0,
+          "recall": 0.0,
+          "specificity": 0.6,
+          "f1": 0.0,
+          "balanced_accuracy": 0.3
+        },
+        "rank_metrics": {
+          "roc_auc": null,
+          "average_precision": null
+        },
+        "calibration": {
+          "brier_score": 0.12151970434056666,
+          "ece_10": 0.3404002333333333
+        }
+      }
+    ],
+    "n_tiles_bin": [
+      {
+        "group": "351-450",
+        "n": 20.0,
+        "threshold_metrics": {
+          "n": 20.0,
+          "positive_rate": 1.0,
+          "accuracy": 0.85,
+          "precision": 1.0,
+          "recall": 0.85,
+          "specificity": 0.0,
+          "f1": 0.9189189189189189,
+          "balanced_accuracy": 0.425
+        },
+        "rank_metrics": {
+          "roc_auc": null,
+          "average_precision": null
+        },
+        "calibration": {
+          "brier_score": 0.3382333524976999,
+          "ece_10": 0.5748137999999999
+        }
+      },
+      {
+        "group": "<=350",
+        "n": 30.0,
+        "threshold_metrics": {
+          "n": 30.0,
+          "positive_rate": 0.0,
+          "accuracy": 0.6,
+          "precision": 0.0,
+          "recall": 0.0,
+          "specificity": 0.6,
+          "f1": 0.0,
+          "balanced_accuracy": 0.3
+        },
+        "rank_metrics": {
+          "roc_auc": null,
+          "average_precision": null
+        },
+        "calibration": {
+          "brier_score": 0.12151970434056666,
+          "ece_10": 0.3404002333333333
+        }
+      }
+    ]
+  },
+  "model_card": {
+    "model_name": "TP53 Path Foundation + Logistic Head",
+    "model_version": "pathfoundation_tp53_200_platt",
+    "cohort": "TCGA-BRCA primary-slide cohort (train100/val50/test50)",
+    "intended_use": "Research-only TP53 risk support from WSI; not standalone diagnosis.",
+    "limitations": [
+      "Retrospective single-cohort benchmark",
+      "Threshold locked from validation split"
+    ]
+  },
+  "mdt_handoff_summary": {
+    "selected_threshold": 0.338,
+    "test_ece_10": 0.13791082,
+    "test_recall_ci_low": 0.6666666666666666
+  },
+  "mdt_handoff_payload_example": {
+    "overrides": {
+      "diagnosticore": {
+        "source_service": "diagnosticore-service",
+        "target": "tp53_mutation",
+        "tp53_probability": 0.0,
+        "threshold": 0.338,
+        "predicted_label": "tp53_wildtype",
+        "model_version": "pathfoundation_tp53_200_platt",
+        "is_confirmed_genomic_test": false,
+        "model_card": {
+          "model_name": "TP53 Path Foundation + Logistic Head",
+          "model_version": "pathfoundation_tp53_200_platt",
+          "cohort": "TCGA-BRCA primary-slide cohort (train100/val50/test50)",
+          "intended_use": "Research-only TP53 risk support from WSI; not standalone diagnosis.",
+          "limitations": [
+            "Retrospective single-cohort benchmark",
+            "Threshold locked from validation split"
+          ]
+        },
+        "locked_threshold_report": {
+          "artifact_type": "tp53_locked_threshold_report_v1",
+          "selected_threshold": 0.338,
+          "test_ece_10": 0.13791082,
+          "test_recall_ci_low": 0.6666666666666666
+        },
+        "locked_threshold_report_uri": "/Users/faith/Desktop/Voxelomics-offline/backend/diagnosticore-service/output/pathfoundation_tp53_200/tp53_clinical_report_pathfoundation_platt.json"
+      }
+    }
+  }
+}

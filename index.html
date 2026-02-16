@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voxelomics - Oncology Intelligence Platform</title>
+  <script src="./vendor-tailwindcss.js"></script>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            voxelomics: {
+              midnight: '#07085F',
+              deep: '#0B0D7D',
+              cyan: '#57D4F4',
+              lilac: '#8A78FF',
+              mint: '#94F2B7',
+              ink: '#11173D',
+              cloud: '#EEF3FF',
+              surface: '#F8FAFF',
+            },
+          },
+          fontFamily: {
+            display: ['"Manrope"', '"Segoe UI"', 'sans-serif'],
+            sans: ['"Manrope"', '"Segoe UI"', 'sans-serif'],
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'wave': 'wave 1.2s ease-in-out infinite',
+            'marquee': 'marquee 35s linear infinite',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            wave: {
+              '0%, 100%': { height: '10px' },
+              '50%': { height: '24px' },
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --vx-midnight: #07085F;
+      --vx-deep: #0B0D7D;
+      --vx-cyan: #57D4F4;
+      --vx-lilac: #8A78FF;
+      --vx-mint: #94F2B7;
+      --vx-ink: #11173D;
+      --vx-cloud: #EEF3FF;
+    }
+
+    body {
+      font-family: 'Manrope', 'Segoe UI', sans-serif;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(87, 212, 244, 0.12), transparent 32%),
+        radial-gradient(circle at 88% 18%, rgba(138, 120, 255, 0.14), transparent 38%),
+        linear-gradient(180deg, #f8faff 0%, #eef3ff 100%);
+      color: #11173D;
+    }
+
+    /* Custom scrollbar for modern feel */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #dce5ff;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #8ea1df;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #6c7fc6;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="./index.tsx"></script>
+</body>
+
+</html>

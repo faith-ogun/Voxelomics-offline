@@ -1,0 +1,40 @@
+{
+  "evidence": [
+    {
+      "title": "Neoadjuvant anti-HER2 strategies in HER2-positive breast cancer",
+      "source": "J Clin Oncol",
+      "year": 2024,
+      "identifier": "PMID:39220011",
+      "finding": "Early biologic response can guide surgical timing and escalation/de-escalation pathways.",
+      "diagnosis_tags": ["invasive ductal carcinoma", "breast cancer"],
+      "gene_tags": ["PIK3CA", "TP53", "HER2"]
+    },
+    {
+      "title": "KRAS G12C-directed approaches in locally advanced NSCLC",
+      "source": "Lancet Oncology",
+      "year": 2025,
+      "identifier": "PMID:40114567",
+      "finding": "Integration of systemic induction regimens may improve multidisciplinary resection planning.",
+      "diagnosis_tags": ["nsclc adenocarcinoma", "lung cancer"],
+      "gene_tags": ["KRAS", "TP53"]
+    },
+    {
+      "title": "HRD and BRCA1-guided treatment sequencing in high-grade serous ovarian cancer",
+      "source": "Annals of Oncology",
+      "year": 2023,
+      "identifier": "PMID:37881200",
+      "finding": "HRD-positive disease benefits from maintenance-oriented planning following platinum response.",
+      "diagnosis_tags": ["high-grade serous ovarian cancer", "ovarian cancer"],
+      "gene_tags": ["BRCA1", "BRCA2"]
+    },
+    {
+      "title": "Tumor board data synthesis frameworks for precision oncology",
+      "source": "Nature Medicine",
+      "year": 2024,
+      "identifier": "PMID:39055122",
+      "finding": "Structured multimodal summaries reduce decision latency and improve actionability.",
+      "diagnosis_tags": ["breast cancer", "lung cancer", "ovarian cancer"],
+      "gene_tags": ["PIK3CA", "KRAS", "BRCA1"]
+    }
+  ]
+}

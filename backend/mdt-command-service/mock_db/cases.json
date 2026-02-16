@@ -1,0 +1,118 @@
+{
+  "cases": [
+    {
+      "case_id": "MDT-001",
+      "patient_id": "P-1001",
+      "patient_name": "Sarah Johnson",
+      "diagnosis": "Invasive Ductal Carcinoma",
+      "stage": "Stage IIB",
+      "diagnosticore_case_submitter_id": "TCGA-A1-A0SP",
+      "imaging": {
+        "ct_report": "CT chest/abdomen/pelvis shows no distant metastatic disease; left axillary nodal enlargement noted.",
+        "mri_report": "Breast MRI demonstrates 2.8 cm irregular enhancing lesion in upper outer quadrant with suspicious node morphology.",
+        "pet_report": "FDG uptake confined to primary lesion and ipsilateral nodal basin."
+      },
+      "pathology": {
+        "biopsy_summary": "Core biopsy: Grade 3 invasive ductal carcinoma.",
+        "wsi_summary": "High cellularity with pleomorphic nuclei and increased mitotic activity.",
+        "receptor_status": "ER low positive, PR negative, HER2 3+, Ki-67 22%",
+        "grade": "3"
+      },
+      "genomics": {
+        "report_summary": "NGS identifies PIK3CA H1047R and TP53 R248Q; low TMB; MSI stable.",
+        "mutations": [
+          {
+            "gene": "PIK3CA",
+            "variant": "H1047R",
+            "tier": "I",
+            "notes": "Actionable pathway mutation"
+          },
+          {
+            "gene": "TP53",
+            "variant": "R248Q",
+            "tier": "II",
+            "notes": "High-risk association"
+          }
+        ],
+        "tmb": "Low",
+        "msi": "Stable"
+      },
+      "transcript": {
+        "raw_text": "48-year-old woman with stage IIB invasive ductal carcinoma, presenting with two positive axillary lymph nodes. Breast MRI shows a 2.8 cm irregular enhancing lesion in the upper outer quadrant, with no evidence of chest wall invasion. There is one suspicious ipsilateral axillary lymph node. Core biopsy confirms grade 3 invasive ductal carcinoma. Oestrogen receptor is low positive at 10 percent, progesterone receptor is negative, HER2 is 3 positive, and Ki-67 is 22 percent. Molecular panel reports a PIK3CA H1047R mutation and a TP53 R248Q mutation. Tumour mutational burden is low, and microsatellite status is stable. Given the HER2 positivity and nodal disease, the recommendation is to proceed with neoadjuvant anti-HER2 systemic therapy prior to surgery. The team agrees with a neoadjuvant approach, followed by restaging and definitive surgical planning. Consensus is to proceed with neoadjuvant anti-HER2 regimen, reassess response, and then perform definitive surgery.",
+        "audio_uri": ""
+      }
+    },
+    {
+      "case_id": "MDT-002",
+      "patient_id": "P-1002",
+      "patient_name": "David Kim",
+      "diagnosis": "NSCLC Adenocarcinoma",
+      "stage": "Stage IIIA",
+      "diagnosticore_case_submitter_id": "TCGA-A2-A1FX",
+      "imaging": {
+        "ct_report": "Right upper lobe spiculated mass 3.4 cm with ipsilateral mediastinal nodes.",
+        "mri_report": "No brain metastases identified.",
+        "pet_report": "Primary lesion and mediastinal nodes FDG-avid; no distant uptake."
+      },
+      "pathology": {
+        "biopsy_summary": "EBUS biopsy confirms adenocarcinoma consistent with lung primary.",
+        "wsi_summary": "Gland-forming malignant cells with stromal reaction.",
+        "receptor_status": "PD-L1 TPS 65%",
+        "grade": "2"
+      },
+      "genomics": {
+        "report_summary": "KRAS G12C detected; EGFR/ALK/ROS1 negative; intermediate mutational risk profile.",
+        "mutations": [
+          {
+            "gene": "KRAS",
+            "variant": "G12C",
+            "tier": "I",
+            "notes": "Targetable in advanced settings"
+          }
+        ],
+        "tmb": "Intermediate",
+        "msi": "Stable"
+      },
+      "transcript": {
+        "raw_text": "Thoracic surgery: potentially resectable after induction. Medical oncology: recommend induction chemo-immunotherapy then restaging.",
+        "audio_uri": "gs://voxelomics-mdt/mock/mdt-002.wav"
+      }
+    },
+    {
+      "case_id": "MDT-003",
+      "patient_id": "P-1003",
+      "patient_name": "Grace Williams",
+      "diagnosis": "High-Grade Serous Ovarian Cancer",
+      "stage": "Stage IIIC",
+      "diagnosticore_case_submitter_id": "TCGA-A2-A0SV",
+      "imaging": {
+        "ct_report": "Peritoneal implants and omental disease with moderate ascites.",
+        "mri_report": "Bilateral adnexal masses with diffuse peritoneal involvement.",
+        "pet_report": "Widespread peritoneal FDG uptake pattern."
+      },
+      "pathology": {
+        "biopsy_summary": "High-grade serous carcinoma, WT1 positive, aberrant p53.",
+        "wsi_summary": "Marked atypia and brisk mitotic activity.",
+        "receptor_status": "Not applicable",
+        "grade": "3"
+      },
+      "genomics": {
+        "report_summary": "HRD-positive profile with BRCA1 pathogenic alteration.",
+        "mutations": [
+          {
+            "gene": "BRCA1",
+            "variant": "Pathogenic truncating variant",
+            "tier": "I",
+            "notes": "Therapeutic relevance for PARP pathway"
+          }
+        ],
+        "tmb": "Low",
+        "msi": "Stable"
+      },
+      "transcript": {
+        "raw_text": "Gynecologic oncology: discuss interval debulking after three cycles platinum. Genetics: family counseling advised.",
+        "audio_uri": "gs://voxelomics-mdt/mock/mdt-003.wav"
+      }
+    }
+  ]
+}

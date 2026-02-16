@@ -1,0 +1,97 @@
+{
+  "name": "oncydra",
+  "description": "Voxelomics Offline desktop application",
+  "author": "Voxelomics Team",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "desktop:dev": "concurrently -k \"vite\" \"wait-on tcp:5173 && cross-env VOXELOMICS_RENDERER_URL=http://127.0.0.1:5173 electron .\"",
+    "desktop:start": "npm run build && electron .",
+    "desktop:dist": "npm run build && electron-builder --publish never"
+  },
+  "dependencies": {
+    "@11labs/react": "^0.2.0",
+    "@elevenlabs/client": "^0.12.1",
+    "@elevenlabs/elevenlabs-js": "^2.27.0",
+    "@google/genai": "^1.31.0",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@react-three/drei": "9.96.1",
+    "@react-three/fiber": "8.15.14",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "firebase": "^12.6.0",
+    "framer-motion": "11.0.3",
+    "jspdf": "2.5.1",
+    "lucide-react": "0.309.0",
+    "onnxruntime-web": "^1.24.1",
+    "openseadragon": "^5.0.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hot-toast": "^2.6.0",
+    "react-markdown": "^10.1.0",
+    "recharts": "^3.6.0",
+    "tailwind-merge": "^3.4.0",
+    "three": "0.160.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "electron": "^37.4.0",
+    "electron-builder": "^26.0.12",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0",
+    "wait-on": "^8.0.3"
+  },
+  "build": {
+    "appId": "com.voxelomics.offline",
+    "productName": "Voxelomics Offline",
+    "asar": true,
+    "asarUnpack": [
+      "backend/mdt-command-service/**"
+    ],
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "backend/mdt-command-service/**/*",
+      "!backend/mdt-command-service/.venv/**",
+      "!backend/mdt-command-service/.pytest_cache/**",
+      "!backend/mdt-command-service/__pycache__/**",
+      "!backend/mdt-command-service/local_data/**",
+      "!backend/mdt-command-service/output/**",
+      "!backend/mdt-command-service/tests/**",
+      "!backend/mdt-command-service/**/*.pyc",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "electron/main.cjs"
+    },
+    "mac": {
+      "category": "public.app-category.medical",
+      "icon": "electron/assets/voxelomics.png",
+      "target": [
+        "zip"
+      ]
+    },
+    "win": {
+      "icon": "electron/assets/voxelomics.ico",
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "linux": {
+      "icon": "electron/assets/voxelomics.png",
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    }
+  }
+}

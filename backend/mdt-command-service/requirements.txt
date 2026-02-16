@@ -1,0 +1,19 @@
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+httpx
+
+# Optional ADK local orchestration (LiteLLM + Ollama)
+google-adk
+litellm
+
+# Local inference
+transformers>=4.50.0
+torch
+accelerate
+safetensors
+sentencepiece
+
+# Testing
+pytest

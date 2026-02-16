@@ -1,0 +1,113 @@
+# -----------------------------
+# OS / editor noise
+# -----------------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# -----------------------------
+# Node / frontend build outputs
+# -----------------------------
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# -----------------------------
+# Python caches / virtualenvs
+# -----------------------------
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.venv/
+venv/
+env/
+ENV/
+
+# Backend-specific local envs
+backend/**/.venv/
+backend/**/__pycache__/
+backend/**/.pytest_cache/
+backend/**/.mypy_cache/
+
+# -----------------------------
+# Local runtime state (do not commit)
+# -----------------------------
+audio/
+local_data/
+evidence_cache/
+mdt_cases.sqlite3
+
+backend/mdt-command-service/local_data/
+backend/mdt-command-service/output/
+backend/mdt-command-service/*.sqlite3
+
+# Large local pathology artifacts
+backend/diagnosticore-service/gdc_wsi/
+backend/diagnosticore-service/output/
+backend/diagnosticore-service/.venv*/
+backend/diagnosticore-service/*.sqlite3
+
+# Keep compact benchmark/report artifacts for submission evidence
+!backend/diagnosticore-service/output/
+backend/diagnosticore-service/output/*
+!backend/diagnosticore-service/output/pathfoundation_tp53_200/
+backend/diagnosticore-service/output/pathfoundation_tp53_200/*
+!backend/diagnosticore-service/output/pathfoundation_tp53_200/comparison_vs_cnn.json
+!backend/diagnosticore-service/output/pathfoundation_tp53_200/tp53_clinical_report_pathfoundation_platt.json
+!backend/diagnosticore-service/output/cnn_tp53_200/
+backend/diagnosticore-service/output/cnn_tp53_200/*
+!backend/diagnosticore-service/output/cnn_tp53_200/tp53_clinical_report_calibrated.json
+
+# -----------------------------
+# Model weights and large binaries
+# -----------------------------
+models/**
+!models/**/
+!models/**/README.md
+
+public/models/*.onnx
+public/models/*.onnx.data
+public/models/*.safetensors
+public/models/*.pt
+public/models/*.bin
+
+# -----------------------------
+# Env and secrets
+# -----------------------------
+.env
+.env.local
+.env.*.local
+backend/**/.env
+backend/**/.env.offline
+backend/**/.env.*.local
+
+# Keep example templates
+!env.example
+!backend/**/.env.example
+!backend/**/.env.adk-local.example
+
+# -----------------------------
+# Packaging outputs
+# -----------------------------
+release/
+out/
+*.dmg
+*.pkg
+*.exe
+*.msi
+*.AppImage
+*.deb
+*.zip
+*.tar.gz
