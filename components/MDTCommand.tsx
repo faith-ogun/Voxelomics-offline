@@ -18,6 +18,11 @@ import {
   Mic,
   MessageSquare,
   Microscope,
+  Minimize2,
+  Home,
+  Plus,
+  Minus,
+  Maximize2,
   Play,
   RefreshCw,
   ShieldCheck,
@@ -166,13 +171,22 @@ interface EvidenceReferenceItem {
 type OpenSeadragonViewer = {
   destroy: () => void;
   addHandler: (eventName: string, handler: (...args: unknown[]) => void) => void;
+  isFullPage?: () => boolean;
+  setFullPage?: (fullPage: boolean) => void;
+  viewport?: {
+    zoomBy: (factor: number) => void;
+    applyConstraints: () => void;
+    goHome: () => void;
+  };
 };
 
 type OpenSeadragonFactory = (options: {
   element: HTMLElement;
   tileSources: string;
   prefixUrl: string;
+  navImages?: Record<string, unknown>;
   showNavigator?: boolean;
+  showNavigationControl?: boolean;
   navigatorPosition?: string;
   animationTime?: number;
   blendTime?: number;
@@ -970,6 +984,32 @@ const OPEN_SEADRAGON_LOCAL_SCRIPT_SRC = resolveFrontendAssetUrl(
 const OPEN_SEADRAGON_CDN_SCRIPT_SRC =
   'https://cdn.jsdelivr.net/npm/openseadragon@5.0.1/build/openseadragon/openseadragon.min.js';
 const OPEN_SEADRAGON_IMAGES_PREFIX = resolveFrontendAssetUrl('./vendor/openseadragon/images/');
+const OPEN_SEADRAGON_NAV_IMAGES = {
+  zoomIn: {
+    REST: resolveFrontendAssetUrl('./vendor/openseadragon/images/zoomin_rest.png'),
+    GROUP: resolveFrontendAssetUrl('./vendor/openseadragon/images/zoomin_grouphover.png'),
+    HOVER: resolveFrontendAssetUrl('./vendor/openseadragon/images/zoomin_hover.png'),
+    DOWN: resolveFrontendAssetUrl('./vendor/openseadragon/images/zoomin_pressed.png'),
+  },
+  zoomOut: {
+    REST: resolveFrontendAssetUrl('./vendor/openseadragon/images/zoomout_rest.png'),
+    GROUP: resolveFrontendAssetUrl('./vendor/openseadragon/images/zoomout_grouphover.png'),
+    HOVER: resolveFrontendAssetUrl('./vendor/openseadragon/images/zoomout_hover.png'),
+    DOWN: resolveFrontendAssetUrl('./vendor/openseadragon/images/zoomout_pressed.png'),
+  },
+  home: {
+    REST: resolveFrontendAssetUrl('./vendor/openseadragon/images/home_rest.png'),
+    GROUP: resolveFrontendAssetUrl('./vendor/openseadragon/images/home_grouphover.png'),
+    HOVER: resolveFrontendAssetUrl('./vendor/openseadragon/images/home_hover.png'),
+    DOWN: resolveFrontendAssetUrl('./vendor/openseadragon/images/home_pressed.png'),
+  },
+  fullpage: {
+    REST: resolveFrontendAssetUrl('./vendor/openseadragon/images/fullpage_rest.png'),
+    GROUP: resolveFrontendAssetUrl('./vendor/openseadragon/images/fullpage_grouphover.png'),
+    HOVER: resolveFrontendAssetUrl('./vendor/openseadragon/images/fullpage_hover.png'),
+    DOWN: resolveFrontendAssetUrl('./vendor/openseadragon/images/fullpage_pressed.png'),
+  },
+};
 
 const loadScriptBySrc = (src: string): Promise<void> =>
   new Promise<void>((resolve, reject) => {
@@ -1100,6 +1140,7 @@ export const MDTCommand: React.FC<MDTCommandProps> = ({ onNavigateHome }) => {
   const [diagnosticoreArtifact, setDiagnosticoreArtifact] = useState<DraftResponse['artifacts']['diagnosticore'] | null>(null);
   const [deepZoomStatus, setDeepZoomStatus] = useState('');
   const [deepZoomReady, setDeepZoomReady] = useState(false);
+  const [deepZoomIsFullPage, setDeepZoomIsFullPage] = useState(false);
   const [useNativeDeepZoom, setUseNativeDeepZoom] = useState(false);
   const [transcriptSource, setTranscriptSource] = useState<TranscriptSource>('manual');
 
@@ -1843,6 +1884,7 @@ export const MDTCommand: React.FC<MDTCommandProps> = ({ onNavigateHome }) => {
   useEffect(() => {
     if (workspaceTab !== 'diagnosticore' || !diagnosticoreDeepZoomUrl) {
       setDeepZoomReady(false);
+      setDeepZoomIsFullPage(false);
       setUseNativeDeepZoom(false);
       if (deepZoomViewerRef.current) {
         deepZoomViewerRef.current.destroy();
@@ -1875,7 +1917,9 @@ export const MDTCommand: React.FC<MDTCommandProps> = ({ onNavigateHome }) => {
           element: deepZoomViewerContainerRef.current,
           tileSources: diagnosticoreDeepZoomUrl,
           prefixUrl: OPEN_SEADRAGON_IMAGES_PREFIX,
+          navImages: OPEN_SEADRAGON_NAV_IMAGES,
           showNavigator: true,
+          showNavigationControl: false,
           navigatorPosition: 'BOTTOM_RIGHT',
           animationTime: 0.7,
           blendTime: 0.1,
@@ -1913,6 +1957,11 @@ export const MDTCommand: React.FC<MDTCommandProps> = ({ onNavigateHome }) => {
             `Interactive viewer loaded with ${tileFailureCount} missing tile${tileFailureCount === 1 ? '' : 's'}.`
           );
         });
+        viewer.addHandler('full-page', (event: unknown) => {
+          if (cancelled) return;
+          const fullPage = Boolean((event as { fullPage?: boolean } | null)?.fullPage);
+          setDeepZoomIsFullPage(fullPage);
+        });
       } catch {
         if (cancelled) return;
         setUseNativeDeepZoom(true);
@@ -1930,6 +1979,32 @@ export const MDTCommand: React.FC<MDTCommandProps> = ({ onNavigateHome }) => {
       }
     };
   }, [workspaceTab, diagnosticoreDeepZoomUrl]);
+
+  const handleDeepZoomZoomIn = () => {
+    const viewer = deepZoomViewerRef.current;
+    if (!viewer?.viewport) return;
+    viewer.viewport.zoomBy(1.2);
+    viewer.viewport.applyConstraints();
+  };
+
+  const handleDeepZoomZoomOut = () => {
+    const viewer = deepZoomViewerRef.current;
+    if (!viewer?.viewport) return;
+    viewer.viewport.zoomBy(1 / 1.2);
+    viewer.viewport.applyConstraints();
+  };
+
+  const handleDeepZoomHome = () => {
+    deepZoomViewerRef.current?.viewport?.goHome();
+  };
+
+  const handleDeepZoomToggleFullPage = () => {
+    const viewer = deepZoomViewerRef.current;
+    if (!viewer?.setFullPage) return;
+    const next = !(viewer.isFullPage?.() ?? deepZoomIsFullPage);
+    viewer.setFullPage(next);
+    setDeepZoomIsFullPage(next);
+  };
 
   useEffect(() => {
     if (transcriptSource !== 'manual' && transcriptionOutput.trim()) {
@@ -3303,10 +3378,54 @@ export const MDTCommand: React.FC<MDTCommandProps> = ({ onNavigateHome }) => {
                               onStatusChange={setDeepZoomStatus}
                             />
                           ) : (
-                            <div
-                              ref={deepZoomViewerContainerRef}
-                              className="w-full h-[360px] rounded-lg border border-[#3b4f9e] bg-[#09133a] overflow-hidden"
-                            />
+                            <div className="relative">
+                              <div className="absolute left-2 top-2 z-10 flex items-center gap-1.5 rounded-lg border border-[#3b4f9e] bg-[#0a1335]/90 p-1">
+                                <button
+                                  type="button"
+                                  onClick={handleDeepZoomZoomIn}
+                                  aria-label="Zoom in"
+                                  title="Zoom in"
+                                  className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-[#3b4f9e] bg-[#122461] text-[#dce4ff] hover:bg-[#1a2f79]"
+                                >
+                                  <Plus className="h-4 w-4" />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={handleDeepZoomZoomOut}
+                                  aria-label="Zoom out"
+                                  title="Zoom out"
+                                  className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-[#3b4f9e] bg-[#122461] text-[#dce4ff] hover:bg-[#1a2f79]"
+                                >
+                                  <Minus className="h-4 w-4" />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={handleDeepZoomHome}
+                                  aria-label="Go home"
+                                  title="Go home"
+                                  className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-[#3b4f9e] bg-[#122461] text-[#dce4ff] hover:bg-[#1a2f79]"
+                                >
+                                  <Home className="h-4 w-4" />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={handleDeepZoomToggleFullPage}
+                                  aria-label={deepZoomIsFullPage ? 'Exit full page' : 'Toggle full page'}
+                                  title={deepZoomIsFullPage ? 'Exit full page' : 'Toggle full page'}
+                                  className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-[#3b4f9e] bg-[#122461] text-[#dce4ff] hover:bg-[#1a2f79]"
+                                >
+                                  {deepZoomIsFullPage ? (
+                                    <Minimize2 className="h-4 w-4" />
+                                  ) : (
+                                    <Maximize2 className="h-4 w-4" />
+                                  )}
+                                </button>
+                              </div>
+                              <div
+                                ref={deepZoomViewerContainerRef}
+                                className="w-full h-[360px] rounded-lg border border-[#3b4f9e] bg-[#09133a] overflow-hidden"
+                              />
+                            </div>
                           )}
                           <p className="text-[10px] text-[#c4d0ff]">{deepZoomStatus}</p>
                           {!deepZoomReady && diagnosticoreTilePreviewUrl ? (
