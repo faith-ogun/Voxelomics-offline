@@ -27,6 +27,12 @@ Voxelomics focuses on MDT (multidisciplinary tumor board) preparation with local
 - HITL gate before recommendation lock.
 - Local patient case snapshots for review without rerunning all stages.
 
+## Judge and release docs
+
+- Judge flow: `JUDGE_QUICKSTART.md`
+- Release prep: `RELEASE_CHECKLIST.md`
+- Release notes starter: `RELEASE_NOTES_TEMPLATE.md`
+
 ## Repository structure
 
 - `App.tsx`, `components/`: frontend app (Vite + React + TypeScript)
