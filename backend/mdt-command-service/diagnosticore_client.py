@@ -86,7 +86,7 @@ class DiagnosticoreClient:
         self.wsi_download_dir = Path(
             os.getenv(
                 "MDT_DIAGNOSTICORE_WSI_DOWNLOAD_DIR",
-                "../diagnosticore-service/data/gdc_wsi",
+                "../diagnosticore-service/gdc_wsi",
             )
         )
         self.deepzoom_dir = Path(

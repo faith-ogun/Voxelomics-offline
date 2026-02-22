@@ -3,6 +3,8 @@ import { BrainCircuit, Microscope, ShieldCheck } from 'lucide-react';
 import { ContainerScroll } from './container-scroll-animation';
 
 export function HeroScrollDemo() {
+  const heroImageSrc = `${import.meta.env.BASE_URL}mdt_command_submission.png`;
+
   return (
     <div className="flex flex-col overflow-hidden pb-8 pt-8 md:pt-12">
       <ContainerScroll
@@ -24,7 +26,7 @@ export function HeroScrollDemo() {
       >
         <div className="relative h-full w-full">
           <img
-            src="/mdt_command_submission.png"
+            src={heroImageSrc}
             alt="Clinician reviewing oncology imaging and pathology results"
             className="mx-auto h-full w-full object-cover object-center"
             draggable={false}

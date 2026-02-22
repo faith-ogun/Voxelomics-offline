@@ -245,6 +245,7 @@ function backendEnv(dataDir) {
   const audioDir = path.join(dataDir, "audio");
   const sqlitePath = path.join(dataDir, "mdt_cases.sqlite3");
   const evidenceDir = path.join(dataDir, "evidence_cache");
+  const diagnosticoreRoot = path.join(path.dirname(backendServiceDir()), "diagnosticore-service");
 
   fs.mkdirSync(audioDir, { recursive: true });
   fs.mkdirSync(evidenceDir, { recursive: true });
@@ -258,6 +259,36 @@ function backendEnv(dataDir) {
   env.MDT_RETRIEVAL_MODE = env.MDT_RETRIEVAL_MODE || "local";
   env.MDT_LOCAL_EVIDENCE_DIR = env.MDT_LOCAL_EVIDENCE_DIR || evidenceDir;
   env.MDT_DIAGNOSTICORE_FETCH_MODE = env.MDT_DIAGNOSTICORE_FETCH_MODE || "file";
+  env.MDT_DIAGNOSTICORE_ALLOW_FALLBACK = env.MDT_DIAGNOSTICORE_ALLOW_FALLBACK || "true";
+  env.MDT_DIAGNOSTICORE_CASE_PREDICTIONS_CSV =
+    env.MDT_DIAGNOSTICORE_CASE_PREDICTIONS_CSV ||
+    path.join(
+      diagnosticoreRoot,
+      "output",
+      "pathfoundation_tp53_200",
+      "case_predictions_calibrated_platt.csv"
+    );
+  env.MDT_DIAGNOSTICORE_CLINICAL_REPORT_JSON =
+    env.MDT_DIAGNOSTICORE_CLINICAL_REPORT_JSON ||
+    path.join(
+      diagnosticoreRoot,
+      "output",
+      "pathfoundation_tp53_200",
+      "tp53_clinical_report_pathfoundation_platt.json"
+    );
+  env.MDT_DIAGNOSTICORE_WSI_METADATA_CSV =
+    env.MDT_DIAGNOSTICORE_WSI_METADATA_CSV ||
+    path.join(diagnosticoreRoot, "output", "tcga_brca_tp53_wsi_primary_slide.csv");
+  env.MDT_DIAGNOSTICORE_WSI_DOWNLOAD_DIR =
+    env.MDT_DIAGNOSTICORE_WSI_DOWNLOAD_DIR || path.join(diagnosticoreRoot, "gdc_wsi");
+  env.MDT_DIAGNOSTICORE_DEEPZOOM_DIR =
+    env.MDT_DIAGNOSTICORE_DEEPZOOM_DIR || path.join(diagnosticoreRoot, "output", "deepzoom");
+  env.MDT_DIAGNOSTICORE_TILE_MANIFEST_CSVS =
+    env.MDT_DIAGNOSTICORE_TILE_MANIFEST_CSVS ||
+    [
+      path.join(diagnosticoreRoot, "output", "tcga_brca_tp53_tiles_manifest_external20.csv"),
+      path.join(diagnosticoreRoot, "output", "tcga_brca_tp53_tiles_manifest_full_200.csv"),
+    ].join(",");
   env.MDT_ADK_MODEL_PROVIDER = env.MDT_ADK_MODEL_PROVIDER || "ollama_chat";
   env.MDT_ADK_MODEL_NAME = env.MDT_ADK_MODEL_NAME || "qwen2.5:7b-instruct";
 
@@ -293,6 +324,21 @@ function backendEnv(dataDir) {
     console.warn(`[backend] MedASR local path not found: ${env.MDT_MEDASR_LOCAL_MODEL_ID}`);
   } else {
     console.log(`[backend] MedASR local path: ${env.MDT_MEDASR_LOCAL_MODEL_ID}`);
+  }
+  if (!fs.existsSync(env.MDT_DIAGNOSTICORE_CASE_PREDICTIONS_CSV)) {
+    console.warn(
+      `[backend] DiagnostiCore case predictions not found: ${env.MDT_DIAGNOSTICORE_CASE_PREDICTIONS_CSV}`
+    );
+  }
+  if (!fs.existsSync(env.MDT_DIAGNOSTICORE_CLINICAL_REPORT_JSON)) {
+    console.warn(
+      `[backend] DiagnostiCore clinical report not found: ${env.MDT_DIAGNOSTICORE_CLINICAL_REPORT_JSON}`
+    );
+  }
+  if (!fs.existsSync(env.MDT_DIAGNOSTICORE_DEEPZOOM_DIR)) {
+    console.warn(
+      `[backend] DiagnostiCore DeepZoom dir not found: ${env.MDT_DIAGNOSTICORE_DEEPZOOM_DIR}`
+    );
   }
 
   env.PYTHONUNBUFFERED = "1";

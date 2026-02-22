@@ -3500,6 +3500,14 @@ class MDTCommandOrchestrator:
     ) -> ClinicalReasoningSummary:
         started = datetime.now(timezone.utc)
         model_route = self._model_for_agent("ClinicalReasoner")
+        expected_reasoning_keys = [
+            "summary",
+            "key_risks",
+            "recommended_actions",
+            "confirmatory_actions",
+            "evidence_links",
+            "uncertainty_statement",
+        ]
         payload = self.clinical_reasoner.llm_payload(
             case_input=case_input,
             stage_one=stage_one,
@@ -3512,15 +3520,18 @@ class MDTCommandOrchestrator:
             model_name=model_route,
             instruction=self.clinical_reasoner.llm_instruction(),
             payload=payload,
-            expected_keys=[
-                "summary",
-                "key_risks",
-                "recommended_actions",
-                "confirmatory_actions",
-                "evidence_links",
-                "uncertainty_statement",
-            ],
+            expected_keys=expected_reasoning_keys,
         )
+        medgemma_reasoning_used = False
+        if isinstance(parsed, dict):
+            for key in expected_reasoning_keys:
+                value = parsed.get(key)
+                if isinstance(value, str) and value.strip():
+                    medgemma_reasoning_used = True
+                    break
+                if isinstance(value, list) and any(str(item).strip() for item in value):
+                    medgemma_reasoning_used = True
+                    break
         normalized = self._normalize_clinical_reasoning_payload(
             parsed=parsed,
             case_input=case_input,
@@ -3539,14 +3550,19 @@ class MDTCommandOrchestrator:
         )
         output = self._stabilize_clinical_reasoning_summary(output=output, baseline=baseline)
         output.model_route = model_route
-        output.generation_mode = "local_medgemma"
+        output.generation_mode = "local_medgemma" if medgemma_reasoning_used else "fallback_baseline"
+        trace_note = (
+            f"Local MedGemma reasoning with model={model_route}"
+            if medgemma_reasoning_used
+            else f"Fallback baseline reasoning used; MedGemma output unavailable (configured route={model_route})"
+        )
         self._append_trace(
             record,
             "ClinicalReasoner",
             AgentRunStatus.COMPLETED,
             started,
             datetime.now(timezone.utc),
-            f"Local MedGemma reasoning with model={model_route}",
+            trace_note,
         )
         return output
 
