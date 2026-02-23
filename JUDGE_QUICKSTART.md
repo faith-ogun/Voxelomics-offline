@@ -17,14 +17,26 @@ This guide is for judges reviewing **Voxelomics Offline** with minimal setup.
 3. If macOS blocks first launch:
    - Right-click app -> `Open` or double left click the app.
 
-## 3. Run Demo
+## 3. Choose a Review Path (Recommended)
+
+Judges can review Voxelomics in either of two ways:
+
+1. **Quick review (fastest, recommended):**
+   - Open a saved case snapshot in **Patient Cases** to inspect outputs immediately without waiting for a full rerun.
+2. **Full end-to-end run (transparent demo path):**
+   - Run the full pipeline from demo dictation and observe staged execution.
+
+Note: on some machines, a full local pipeline run may take approximately **3-5 minutes** (especially first run / cold start).
+
+## 4. Run Demo (Full End-to-End Path)
 
 1. In **MDT Board Prep**, click `Load Demo Dictation`.
 2. Click `Run MDT Pipeline`.
 3. Wait for status to reach `PENDING_APPROVAL`.
-4. Note: first run can take longer while local model weights initialize.
+4. First run can take longer while local model weights initialize.
+5. If you prefer a faster review, use **Patient Cases -> Snapshot history** and open a saved case state.
 
-## 4. Review Core Features
+## 5. Review Core Features
 
 1. **Clinical Review Workspace**
    - Risk synthesis
@@ -40,13 +52,13 @@ This guide is for judges reviewing **Voxelomics Offline** with minimal setup.
    - Snapshot history
    - Load prior case state without rerunning pipeline
 
-## 5. Offline Expectation
+## 6. Offline Expectation
 
 - This build is designed for local/offline workflow demonstration.
 - No hosted cloud app is required for judging the desktop experience.
 - DiagnostiCore pathology artifacts are bundled in the full desktop release so judges can review the WSI/TP53 workflow locally.
 
-## 6. Known Scope
+## 7. Known Scope
 
 - Research/demo software only.
 - Not for standalone diagnosis.
