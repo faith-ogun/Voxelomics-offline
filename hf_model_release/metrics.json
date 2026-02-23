@@ -1,0 +1,112 @@
+{
+  "config": {
+    "embeddings_npy": "/Users/faith/Desktop/Voxelomics-offline/backend/diagnosticore-service/output/pathfoundation_tp53_200/embeddings.npy",
+    "embedding_rows_csv": "/Users/faith/Desktop/Voxelomics-offline/backend/diagnosticore-service/output/pathfoundation_tp53_200/embedding_rows.csv",
+    "seed": 42,
+    "max_train_tiles": 50000,
+    "max_eval_tiles_per_split": 15000,
+    "decision_threshold": 0.5,
+    "logreg_c": 1.0
+  },
+  "dataset": {
+    "n_rows_total": 98761,
+    "n_features": 384,
+    "n_train_used": 49092,
+    "n_eval_used": 30000,
+    "class_balance_train": 0.33862951193677177
+  },
+  "tile_metrics": {
+    "train": {
+      "n": 49092.0,
+      "positive_rate": 0.33862951193677177,
+      "accuracy": 0.7936323637252506,
+      "precision": 0.6661038628805321,
+      "recall": 0.7831448508180944,
+      "f1": 0.7198982554120932,
+      "roc_auc": 0.8762093522556836,
+      "average_precision": 0.802780630411325
+    },
+    "eval": {
+      "n": 30000.0,
+      "positive_rate": 0.5,
+      "accuracy": 0.6401666666666667,
+      "precision": 0.6584042793641226,
+      "recall": 0.5826,
+      "f1": 0.6181869628267251,
+      "roc_auc": 0.6964796622222222,
+      "average_precision": 0.6957854729844977
+    }
+  },
+  "slide_metrics_by_split": {
+    "test": {
+      "n": 50.0,
+      "positive_rate": 0.4,
+      "accuracy": 0.72,
+      "precision": 0.65,
+      "recall": 0.65,
+      "f1": 0.65,
+      "roc_auc": 0.77,
+      "average_precision": 0.7083413072873412
+    },
+    "train": {
+      "n": 100.0,
+      "positive_rate": 0.34,
+      "accuracy": 0.97,
+      "precision": 0.9428571428571428,
+      "recall": 0.9705882352941176,
+      "f1": 0.9565217391304348,
+      "roc_auc": 0.9919786096256685,
+      "average_precision": 0.981491690975888
+    },
+    "val": {
+      "n": 50.0,
+      "positive_rate": 0.36,
+      "accuracy": 0.76,
+      "precision": 0.6875,
+      "recall": 0.6111111111111112,
+      "f1": 0.6470588235294118,
+      "roc_auc": 0.8836805555555556,
+      "average_precision": 0.8032331072875449
+    }
+  },
+  "case_metrics_by_split": {
+    "test": {
+      "n": 50.0,
+      "positive_rate": 0.4,
+      "accuracy": 0.72,
+      "precision": 0.65,
+      "recall": 0.65,
+      "f1": 0.65,
+      "roc_auc": 0.77,
+      "average_precision": 0.7083413072873412
+    },
+    "train": {
+      "n": 100.0,
+      "positive_rate": 0.34,
+      "accuracy": 0.97,
+      "precision": 0.9428571428571428,
+      "recall": 0.9705882352941176,
+      "f1": 0.9565217391304348,
+      "roc_auc": 0.9919786096256685,
+      "average_precision": 0.981491690975888
+    },
+    "val": {
+      "n": 50.0,
+      "positive_rate": 0.36,
+      "accuracy": 0.76,
+      "precision": 0.6875,
+      "recall": 0.6111111111111112,
+      "f1": 0.6470588235294118,
+      "roc_auc": 0.8836805555555556,
+      "average_precision": 0.8032331072875449
+    }
+  },
+  "compat_note": {
+    "cnn_equivalent_files": [
+      "/Users/faith/Desktop/Voxelomics-offline/backend/diagnosticore-service/output/pathfoundation_tp53_200/tile_predictions.csv",
+      "/Users/faith/Desktop/Voxelomics-offline/backend/diagnosticore-service/output/pathfoundation_tp53_200/slide_predictions.csv",
+      "/Users/faith/Desktop/Voxelomics-offline/backend/diagnosticore-service/output/pathfoundation_tp53_200/case_predictions.csv",
+      "/Users/faith/Desktop/Voxelomics-offline/backend/diagnosticore-service/output/pathfoundation_tp53_200/metrics.json"
+    ]
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "config": {
+    "cnn_case_predictions": "/Users/faith/Desktop/Voxelomics-offline/backend/diagnosticore-service/output/cnn_tp53_200/case_predictions.csv",
+    "pathfoundation_case_predictions": "/Users/faith/Desktop/Voxelomics-offline/backend/diagnosticore-service/output/pathfoundation_tp53_200/case_predictions_calibrated_platt.csv",
+    "decision_threshold": 0.5
+  },
+  "overlap": {
+    "n_common_case_split_rows": 200,
+    "splits": [
+      "test",
+      "train",
+      "val"
+    ]
+  },
+  "cnn_metrics_by_split": {
+    "test": {
+      "n": 50.0,
+      "positive_rate": 0.4,
+      "accuracy": 0.7,
+      "precision": 0.8571428571428571,
+      "recall": 0.3,
+      "f1": 0.4444444444444444,
+      "roc_auc": 0.7916666666666667,
+      "average_precision": 0.7531416732301973
+    },
+    "train": {
+      "n": 100.0,
+      "positive_rate": 0.34,
+      "accuracy": 0.83,
+      "precision": 0.9473684210526315,
+      "recall": 0.5294117647058824,
+      "f1": 0.6792452830188679,
+      "roc_auc": 0.9188948306595366,
+      "average_precision": 0.8747318689426417
+    },
+    "val": {
+      "n": 50.0,
+      "positive_rate": 0.36,
+      "accuracy": 0.78,
+      "precision": 0.8181818181818182,
+      "recall": 0.5,
+      "f1": 0.6206896551724138,
+      "roc_auc": 0.8454861111111112,
+      "average_precision": 0.7712379190481149
+    }
+  },
+  "pathfoundation_metrics_by_split": {
+    "test": {
+      "n": 50.0,
+      "positive_rate": 0.4,
+      "accuracy": 0.64,
+      "precision": 0.75,
+      "recall": 0.15,
+      "f1": 0.25,
+      "roc_auc": 0.77,
+      "average_precision": 0.7083413072873412
+    },
+    "train": {
+      "n": 100.0,
+      "positive_rate": 0.34,
+      "accuracy": 0.82,
+      "precision": 1.0,
+      "recall": 0.47058823529411764,
+      "f1": 0.64,
+      "roc_auc": 0.9919786096256685,
+      "average_precision": 0.981491690975888
+    },
+    "val": {
+      "n": 50.0,
+      "positive_rate": 0.36,
+      "accuracy": 0.68,
+      "precision": 1.0,
+      "recall": 0.1111111111111111,
+      "f1": 0.2,
+      "roc_auc": 0.8836805555555556,
+      "average_precision": 0.8032331072875449
+    }
+  },
+  "delta_pathfoundation_minus_cnn_by_split": {
+    "test": {
+      "n": 0.0,
+      "positive_rate": 0.0,
+      "accuracy": -0.05999999999999994,
+      "precision": -0.1071428571428571,
+      "recall": -0.15,
+      "f1": -0.19444444444444442,
+      "roc_auc": -0.021666666666666723,
+      "average_precision": -0.04480036594285608
+    },
+    "train": {
+      "n": 0.0,
+      "positive_rate": 0.0,
+      "accuracy": -0.010000000000000009,
+      "precision": 0.052631578947368474,
+      "recall": -0.05882352941176472,
+      "f1": -0.03924528301886787,
+      "roc_auc": 0.07308377896613194,
+      "average_precision": 0.1067598220332463
+    },
+    "val": {
+      "n": 0.0,
+      "positive_rate": 0.0,
+      "accuracy": -0.09999999999999998,
+      "precision": 0.18181818181818177,
+      "recall": -0.3888888888888889,
+      "f1": -0.4206896551724138,
+      "roc_auc": 0.03819444444444442,
+      "average_precision": 0.03199518823943004
+    }
+  }
+}

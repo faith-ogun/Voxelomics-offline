@@ -1,0 +1,18 @@
+{
+  "artifact_name": "Voxelomics TP53 head on Path Foundation embeddings",
+  "artifact_type": "classifier_head",
+  "base_model_family": "Google HAI-DEF Path Foundation",
+  "base_model_identifier": "google/path-foundation",
+  "base_model_source": "https://huggingface.co/google/path-foundation",
+  "base_model_loaded_locally": true,
+  "base_model_loading_mode": "local cache / local_files_only",
+  "derived_artifact": "model.joblib",
+  "task": "TP53 mutation risk support from WSI embeddings",
+  "training_code_repo": "https://github.com/faith-ogun/Voxelomics-offline",
+  "training_code_paths": [
+    "backend/diagnosticore-service/path_foundation_experiment/extract_pathfoundation_embeddings.py",
+    "backend/diagnosticore-service/path_foundation_experiment/train_tp53_head_from_embeddings.py",
+    "backend/diagnosticore-service/path_foundation_experiment/compare_vs_cnn_baseline.py"
+  ],
+  "notes": "This repo contains a derived TP53 head and evaluation artifacts, not Path Foundation base weights."
+}
