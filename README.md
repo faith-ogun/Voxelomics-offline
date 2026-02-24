@@ -3,6 +3,7 @@
 Offline-first clinical workflow demo for the **Kaggle MedGemma Impact Challenge**.
 
 Voxelomics focuses on MDT (multidisciplinary tumor board) preparation with local-first execution, clinician approval gates, and transparent pathology support.
+This repository is licensed under CC BY 4.0 in accordance with the MedGemma Impact Challenge winner licensing requirements.
 
 ![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?logo=vite&logoColor=white)
 ![React](https://img.shields.io/badge/React-18.x-20232A?logo=react&logoColor=61DAFB)
